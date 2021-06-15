@@ -75,10 +75,24 @@ const getBooksDescendOrder = (req,res)=>{
     })
 }
 
+// practice 4
+const getNoPriceBooks = (req,res)=>{
+    const query = "SELECT * FROM book WHERE price IS NULL";
+    connection.query(query,(err,result)=>{
+        if (err) {
+            console.log(err);
+            throw err;
+        };
+        console.log(result);
+        res.json(result);
+    })
+}
+
 module.exports={
     addBook,
     getAllBooks,
     updateBook,
     deleteBook,
     getBooksDescendOrder,
+    getNoPriceBooks,
 }
