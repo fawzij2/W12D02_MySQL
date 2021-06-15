@@ -1,11 +1,12 @@
 const express = require("express");
 require("dotenv").config();
 const db = require('./db');
-const {addBook} = require("./controllers");
+const {addBook, getAllBooks} = require("./controllers");
 
 const app = express()
 
-app.post("/books",addBook )
+app.post("/books",addBook );
+app.get("/books", getAllBooks);
 
 const PORT = 5000;
 app.listen(PORT,()=>{
