@@ -1,5 +1,7 @@
 const connection = require("./db");
 
+
+// pulse check 3
 const addBook = (req,res)=>{
     const {title,author,published_at,price}=req.body;
     const query = "INSERT INTO book (title, author, published_at, price) VALUE (?,?,?,?);";
@@ -14,6 +16,7 @@ const addBook = (req,res)=>{
     })
 };
 
+// pulse check 4
 const getAllBooks = (req,res)=>{
     const query = "SELECT * FROM book"
     connection.query(query,(err,result)=>{
@@ -26,6 +29,8 @@ const getAllBooks = (req,res)=>{
     })
 };
 
+
+// practice 1
 const updateBook = (req,res)=>{
     const bookId = req.params.bookid;
     console.log(bookId);
@@ -43,8 +48,24 @@ const updateBook = (req,res)=>{
     })
 }
 
+// practice 2
+const deleteBook = (req,res)=>{
+    const bookId = req.params.bookid;
+    const query = `DELETE FROM book WHERE id=${bookId}`;
+    connection.query(query,(err,result)=>{
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+        console.log(result);
+        res.json(result);
+    })
+}
+
+
 module.exports={
     addBook,
     getAllBooks,
     updateBook,
+    deleteBook,
 }

@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const db = require('./db');
-const {addBook, getAllBooks, updateBook} = require("./controllers");
+const {addBook, getAllBooks, updateBook, deleteBook} = require("./controllers");
 
 const app = express()
 app.use(express.json())
@@ -9,6 +9,7 @@ app.use(express.json())
 app.post("/books",addBook );
 app.get("/books", getAllBooks);
 app.put("/books/:bookid", updateBook);
+app.delete("/books/:bookid", deleteBook);
 
 const PORT = 5000;
 app.listen(PORT,()=>{
