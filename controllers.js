@@ -62,10 +62,23 @@ const deleteBook = (req,res)=>{
     })
 }
 
+// practice 3
+const getBooksDescendOrder = (req,res)=>{
+    const query = "Select * FROM book ORDER BY id DESC";
+    connection.query(query,(err,result)=>{
+        if (err) {
+            console.log(err);
+            throw err;
+        };
+        console.log(result);
+        res.json(result);
+    })
+}
 
 module.exports={
     addBook,
     getAllBooks,
     updateBook,
     deleteBook,
+    getBooksDescendOrder,
 }
